@@ -1,0 +1,10 @@
+{
+  "root": "web",
+  "open": true,
+  "port": 5500,
+  "reload": true,
+  "ignore": ["node_modules/**", ".git/**"],
+  "browser": "chrome",
+    "cors": true
+  
+}

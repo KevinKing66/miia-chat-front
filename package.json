@@ -1,0 +1,32 @@
+{
+  "name": "comtor.chatbot",
+  "version": "1.0.0",
+  "description": "Miia frontend",
+  "main": "index.js",
+  "dependencies": {
+    "lit": "^3.2.1",
+    "lit-element": "^4.1.1",
+    "lit-html": "^3.2.1",
+    "typescript": "^5.7.3",
+    "uuid": "^11.1.0",
+    "webpack": "^5.98.0"
+  },
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [
+    "bot",
+    "chatbot",
+    "ia"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-loader": "^9.5.2",
+    "vite": "^6.1.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0"
+  }
+}
