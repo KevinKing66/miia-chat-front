@@ -41,7 +41,7 @@ export class ChatComponent extends LitElement {
   }
 
   private getCredentials(): AuthResponse{
-    let credentials: AuthResponse = JSON.parse(sessionStorage.credentials);
+    let credentials: AuthResponse = sessionStorage.credentials;
     if(!credentials){
       return {
         "access_token": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwiaXNzIjoiaHR0cHM6Ly9kZXYta2V2aW4tdjIwMDIudXMuYXV0aDAuY29tLyJ9..06ZTUtSxX_KdwfeV.whu-2pGOrFaCWATJyFWIFYNSc1bQ-CayepNLUt3XUfV-xYy5qXKmTp8WNPjK329VphhQ6V9phLVkjvObx_2onjVLjE9JVM52kS5MkV7pA-xMwgZ42KE8jtUx3raJlXhMd5au8nifNAGhSXFrrCiDnmd35QsHJAVuIw-Iaca4Cv2BLdapHwMcx03fOEyRzv8r2qXBOO82Gy8V2cdTj_Skrt7WOZJGvn29x-QSK81ERBrgx29M7imLkBm34mJs_AbTUElFn07inARS2YBwp4tXkWJOl-rjQwImPSJnCbcVKrdUrrHPMxzBXK3j66k9XG16bhIWS50eIE4.BkB7y63jNjeCM5g1UOHlvA",
@@ -88,8 +88,9 @@ export class ChatComponent extends LitElement {
         .then(data => {
           console.log("Respuesta:");
           console.log(JSON.stringify(data))
-          const answer: ReplyDTO = data as ReplyDTO;
-          this.messages = [...this.messages, { text: answer.answer, type: 'BOT' }];
+          const reply: ReplyDTO = JSON.parse(data)[0] as ReplyDTO;
+          console.log("Reply: ", reply)
+          this.messages = [...this.messages, { text: reply.answer, type: 'BOT' }];
         });
     }
   }

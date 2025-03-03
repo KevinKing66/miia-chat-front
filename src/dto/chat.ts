@@ -6,11 +6,29 @@ export interface MessageDto{
     sent_timestamp: string;
 }
 
-export interface ReplyDTO{
+// export interface ReplyDTO{
+//     to_user_code: string;
+//     to_user_name: string;
+//     message: string;
+//     chatbot_code: string;
+//     sent_timestamp: string;
+// }
+export interface ReplyDTO {
     answer: string;
-    question: string;
-    sent_timestamp: string;
-}
+    content_subtype?: string | null;
+    content_type?: string | null;
+    from_user_code?: string | null;
+    from_user_name?: string | null;
+    remote_chat_id?: string | null;
+    sent_timestamp?: string | null;
+    to_user_code?: string | null;
+    to_user_id?: string | null;
+    to_user_name?: string | null;
+    token?: string;
+    whatsapp_business_account_id?: string | null;
+    whatsapp_phone_number_id?: string | null;
+  }
+  
 
 export class Message {
     constructor(public text: string, public type: 'BOT' | 'USER') { }
