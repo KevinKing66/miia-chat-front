@@ -1,6 +1,6 @@
 export interface MessageDto{
     to_user_code: string;
-    from_user_name?: string;
+    to_user_name?: string;
     chatbot_code: 'SOFI';
     message: string; 
     sent_timestamp: string;
