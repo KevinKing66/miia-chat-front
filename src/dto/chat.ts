@@ -15,3 +15,29 @@ export interface ReplyDTO{
 export class Message {
     constructor(public text: string, public type: 'BOT' | 'USER') { }
 }
+
+export interface AuthResponse {
+    access_token?: string;
+    expires_at?: number;
+    expires_in?: number;
+    id_token?: string;
+    scope?: string;
+    token_type?: string;
+    userinfo: UserInfo;
+}
+
+export interface UserInfo {
+    aud?: string;
+    email: string;
+    email_verified?: boolean;
+    exp?: number;
+    iat?: number;
+    iss?: string;
+    name?: string;
+    nickname?: string;
+    nonce?: string;
+    picture?: string;
+    sid?: string;
+    sub?: string;
+    updated_at?: string;
+}
