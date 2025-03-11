@@ -8,9 +8,10 @@ export class ChatComponent extends LitElement {
   @state()
   ngrok_url: string = "https://equal-katydid-harmless.ngrok-free.app";
 
-  @state() private messages: Array<Message> = [
-    { text: 'Hola, ¿cómo puedo ayudarte?', type: 'BOT' },
-  ];
+  // miia_url: string = "https://miia.comtor.net:9192/chatbot-web/";
+  miia_url: string = "http://127.0.0.1:9192/chatbot-web/";
+
+  @state() private messages: Array<Message> = [];
   @query("#chatInput") input!: HTMLInputElement;
 
 
@@ -20,7 +21,9 @@ export class ChatComponent extends LitElement {
   // .then(data => {console.log("Data: ", data)})
   .then(data => {
     sessionStorage.credentials = JSON.stringify(data);
-    
+    let msg: Message = { text: `Hola ${data.userinfo.nickname}, ¿Cómo puedo ayudarte hoy?`, type: 'BOT' }
+    this.messages = [msg];
+
   })
   .catch(error => console.error("Error en la solicitud:", error));
   }
@@ -44,7 +47,7 @@ export class ChatComponent extends LitElement {
         },
         body: JSON.stringify(body),
       }
-      fetch("http://127.0.0.1:9192/chatbot-web/", reqInit)
+      fetch(this.miia_url, reqInit)
         .then(resp => resp.json())
         .then(data => {
           console.log("Respuesta:");

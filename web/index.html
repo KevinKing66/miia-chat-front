@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css"> <!-- Add this line to include the main.css file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <title>MiIA Core</title>
     <!-- All ts files compiled to project-js/project.js -->
     <script src="project-js/project.js"></script>
@@ -14,15 +15,13 @@
 <body>
     {% if session %}
         <div style="display: flex; flex-direction: column; width: 100%;height: 100%;">
-            <div class="header" style="display: flex; color: white; align-items: center;justify-content: space-between;background-color:#007bff;padding: 5px;">
-                <div>
-                    <h1>{{session.userinfo.name}}!</h1>
+            <div class="header" style="display: flex; color: white; align-items: center;justify-content: space-between;background-color:var(--fourh-color);padding: 5px;font:1.2rem Fira Sans,sans-serif;">
+                <div style="display: flex;flex-direction: row;">
+                    <h1><strong>MIIA</strong></h1>
+                    <img src="assets/logo_horizontal.png" alt="" srcset="" style="height: 2rem;">
                 </div>
-                <div>
-                    <p><a href="/logout" id="qsLogoutBtn" style="color: white;">Logout</a></p>
-                </div>
-                <div>
-                    <p><a href="/user-info" id="get-token" style="color: white;">CARGAR TOKEN</a></p>
+                <div style="margin-left: 10px;font-size: 1.5rem;">                    
+                    <a href="/logout" id="qsLogoutBtn" style="color: white;"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
                 </div>
             </div>
 
@@ -37,8 +36,16 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     {% else %}
-        <h1 id="profileDropDown">Welcome Guest</h1>
-        <p><a href="/login" id="qsLoginBtn">Login</a></p>
+    <div class="center-content max column login-img" style="width: 100%; height: 100%; font-weight:900;">
+        <p style="font-size: 4rem;">Bienvenido</p>
+        <p style="font-size: 2rem;">Inicia sesión para disfrutar nuestra IA.</p>
+        <div class="center-content login-container">
+            <a href="/login" id="qsLoginBtn" style="color: black !important;text-decoration: none; padding: 3rem;">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i> Iniciar Sesión
+            </a>
+        </div>
+    </div>
+        
     {% endif %}
 </body>
 
