@@ -12,7 +12,7 @@ export class ChatComponent extends LitElement {
   // miia_url: string = "http://127.0.0.1:9192/chatbot-web/";
 
   @state() private messages: Array<Message> = [];
-  @query("#chatInput") input!: HTMLInputElement;
+  @query("#chatInput") textarea!: HTMLInputElement;
 
 
   private fetchData(): void{
@@ -34,12 +34,12 @@ export class ChatComponent extends LitElement {
   }
 
   private sendMessage(): void {
-    if (this.input.value.trim()) {
+    if (this.textarea.value.trim()) {
       let credential = this.getCredentials();
-      this.messages = [...this.messages, { text: this.input.value, type: 'USER' }];
+      this.messages = [...this.messages, { text: this.textarea.value.trim(), type: 'USER' }];
       let now = Math.floor(Date.now() / 1000)
-      const body: MessageDto = { to_user_code: credential.userinfo.email, to_user_name: credential.userinfo.nickname, message: this.input.value, chatbot_code: "COMTOR", sent_timestamp: now.toString() };
-      this.input.value = '';
+      const body: MessageDto = { to_user_code: credential.userinfo.email, to_user_name: credential.userinfo.nickname, message: this.textarea.value, chatbot_code: "COMTOR", sent_timestamp: now.toString() };
+      this.textarea.value = '';
       const reqInit = {
         method: "POST",
         headers: {
@@ -61,7 +61,7 @@ export class ChatComponent extends LitElement {
 
   handleKeyDown(event: KeyboardEvent) {
     if (event.key === "Enter") {
-      console.log("Enter pressed:", this.input.value);
+      console.log("Enter pressed:", this.textarea.value);
       this.sendMessage();
     }
   }
@@ -70,10 +70,11 @@ export class ChatComponent extends LitElement {
     return html`
       <div class="chat-content">
         <div class="chat-container">
-          ${this.messages.map(msg => html`<div class="message ${msg.type.toLocaleLowerCase()}">${msg.text}</div>`)}
+          ${this.messages.map(msg => html`<div class="message ${msg.type.toLocaleLowerCase()}"><p>${msg.text}</p></div>`)}
         </div>
+        
         <div class="input-container">
-          <input id="chatInput" type="text" placeholder="Escribe un mensaje..." @keydown=${this.handleKeyDown}/>
+          <textarea id="chatInput" placeholder="Escribe un mensaje..." rows="1" style="resize: true;" @keydown=${this.handleKeyDown}></textarea>
           <button @click="${this.sendMessage}">Enviar</button>
         </div>
       </div>
