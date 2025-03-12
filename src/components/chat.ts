@@ -66,11 +66,15 @@ export class ChatComponent extends LitElement {
     }
   }
 
+  parseBold(text: string): string {
+    return text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+  }
+
   render() {
     return html`
       <div class="chat-content">
         <div class="chat-container">
-          ${this.messages.map(msg => html`<div class="message ${msg.type.toLocaleLowerCase()}"><p>${msg.text}</p></div>`)}
+          ${this.messages.map(msg => html`<div class="message ${msg.type.toLocaleLowerCase()}"><p .innerHTML=${this.parseBold(msg.text)}></p></div>`)}
         </div>
         
         <div class="input-container">
