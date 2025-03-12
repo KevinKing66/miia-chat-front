@@ -1,0 +1,1071 @@
+:root {
+	--background-color: #ffffff;
+	--default-color: #000000;
+	--primary-color: #ff3c00;
+	--secondary-color: #b43809;
+	--primary-color2: #1057a4;
+	--secondary-color2: #0c417b;
+	--default: #88a9c5;
+	--header-text-color: #ffffff;
+}
+
+.nav {
+	margin-top: 1rem;
+}
+
+.navbar {
+	box-shadow: 0 2px 12px 0 #dfe3eb;
+	padding: 0rem 1rem;
+	height: 4rem;
+	background-color: var(--primary-color2);
+}
+
+.navbar h2 {
+	color: var(--background-color);
+}
+
+.navbar>div:nth-child(1) {
+	display: flex;
+	align-items: center;
+	width: 50%;
+}
+
+.navbar-brand {
+	width: 10.9rem;
+	margin-right: 0rem;
+    margin-left: 10px;
+}
+
+/* Estilos para el botón de toggle */
+.navbar-toggler {
+	width: 2rem;
+	height: 2rem;
+	margin-right: 1.5rem;
+	border: none;
+	background-color: var(--primary-color2);
+	/* Fondo del botón */
+	border-radius: 0.5rem;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	/* Sombra alrededor del botón */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1rem;
+	transition: background-color 0.3s ease, color 0.3s ease;
+	cursor: pointer;
+}
+
+/* Estilos del ícono */
+.navbar-toggler .bi {
+	color: var(--background-color);
+	/* Color inicial del ícono */
+	transition: transform 0.3s ease, color 0.3s ease;
+	/* Transición para rotación y color */
+}
+
+/* Cambios de color y rotación cuando el toggle está activo */
+#toggle-sidebar:checked+.navbar-toggler {
+	background-color: #e2e6ea;
+	/* Color de fondo activo */
+}
+
+#toggle-sidebar:checked+.navbar-toggler .bi {
+	transform: rotate(180deg);
+	/* Gira la flecha hacia la izquierda */
+	color: #fff;
+	/* Color del ícono cuando está activo */
+}
+
+/* Cambios de color al pasar el mouse */
+.navbar-toggler:hover {
+	background-color: var(--secondary-color2);
+	/* Fondo al pasar el cursor */
+}
+
+.navbar-toggler:focus {
+	box-shadow: none;
+	/* Sin sombra de enfoque */
+}
+
+
+/* Estilos para el contenedor de las opciones del perfil */
+.profile-options {
+	display: flex;
+	gap: 1rem;
+	height: 100%;
+}
+
+/* Estilos para los enlaces de las opciones */
+.profile-options a {
+	color: white;
+	display: inline-block;
+	width: 3rem;
+	height: 2.5rem;
+	border-radius: 0.5rem;
+	text-align: center;
+	transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Efecto al pasar el cursor sobre el enlace */
+.profile-options a:hover {
+	color: var(--primary-color2) !important;
+	background-color: #f7f7f7;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tamaño del icono */
+.profile-options i {
+	font-size: 1.5rem;
+	line-height: 2.5rem;
+}
+
+/* Estilos para el dropdown */
+.dropdown,
+user-status-widget {
+	display: flex;
+	align-items: center;
+	height: 100%;
+}
+
+/* Estilos para el menú desplegable */
+.dropdown-menu {
+	display: none;
+	top: 2.7rem;
+	right: 0;
+	background-color: #fff;
+	border-radius: 0.5rem;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	width: 8rem;
+	text-align: left;
+	padding: 1rem;
+}
+
+.dropdown-menu a {
+	display: block;
+	padding: 0.5rem 1rem;
+	color: var(--default) !important;
+	text-decoration: none;
+	transition: background-color 0.3s ease;
+	font-size: 0.9rem;
+	width: 100%;
+}
+
+.dropdown-menu a:hover {
+	background-color: #f0f0f0;
+	color: var(--primary-color2);
+}
+
+.dropdown:hover .dropdown-menu {
+	display: block;
+	/* Muestra el menú */
+	margin-top: 1rem;
+	/* Optional: Adjust to avoid spacing issues */
+
+}
+
+#left-sidebar,
+#main-work-area {
+	transition: width 0.8s ease;
+	/* Adjust duration and easing as needed */
+}
+
+
+.sidebar {
+	padding-top: 1rem;
+	height: 93vh;
+	/* Hace que la barra lateral ocupe toda la altura */
+	background-color: #ffffff;
+	color: black;
+	box-shadow: 4px 0 12px -7px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar>div:nth-child(1) {
+	display: flex;
+	margin-bottom: 0.5rem;
+}
+
+.sidebar .nav-link {
+	color: var(--primary-color2);
+	border-radius: 0.5rem;
+	font-size: 10pt;
+}
+
+.sidebar .nav-link:hover {
+	color: var(--primary-color2);
+}
+
+.sidebar .nav-link:focus,
+.sidebar .nav-link:active {
+	color: var(--background-color);
+	background-color: var(--primary-color2);
+	box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar i {
+	font-size: 1.3rem;
+	margin-right: 0.3rem;
+}
+
+
+/*COMPONENTS*/
+.main-work-area {
+	padding: 1rem;
+	background-color: #EBEFF5;
+}
+
+/*TOOLBAR*/
+.toolbar-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.toolbar-title {
+	display: flex;
+	align-items: center;
+}
+
+.toolbar-title h2 {
+	margin-right: 1rem;
+	font-size: 1.8rem;
+	color: var(--primary-color2);
+}
+
+.toolbar-icon {
+	margin-right: 1rem;
+	background: linear-gradient(to right, #ff3c00, #b43809);
+	padding: 1rem 1.2rem;
+	font-size: 1.5rem;
+	color: #ffffff;
+	border-radius: 0.5rem;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.toolbar-actions {
+	display: flex;
+	justify-content: end;
+}
+
+
+.toolbar-actions .btn {
+	border: none;
+	color: var(--background-color);
+	margin-left: 1rem;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.toolbar-actions .btn-icon {
+	background-color: var(--primary-color2);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	background-color: #f7f7f7;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	font-family: montserratMedium;
+	gap: 0.3rem;
+}
+
+.toolbar-actions .add {
+	background-color: #28a745;
+}
+
+.toolbar-actions .add:hover {
+	background-color: #00811e;
+}
+
+.toolbar-actions .upload {
+	background-color: var(--primary-color2);
+}
+
+.toolbar-actions .upload:hover {
+	background-color: var(--secondary-color2);
+}
+
+.toolbar-actions .download {
+	background-color: var(--secondary-color2);
+}
+
+.toolbar-actions .download:hover {
+	background-color: #023266;
+}
+
+.toolbar-actions .delete {
+	background-color: var(--primary-color);
+}
+
+.toolbar-actions .delete:hover {
+	background-color: var(--secondary-color);
+}
+
+
+/*CARD*/
+.card {
+	background-color: var(--background-color);
+	margin-top: 1rem;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-list {
+	padding: 2rem;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-crud {
+	padding: 0;
+}
+
+/*CARD HEADER*/
+
+.card-header {
+	background-color: var(--secondary-color2);
+	border-top-left-radius: 0.5rem !important;
+	border-top-right-radius: 0.5rem !important;
+	border-bottom-left-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+	display: flex;
+	align-items: center;
+	padding: 1rem;
+	gap: 0.5rem;
+}
+
+.card-header i {
+	color: var(--background-color);
+	font-size: 1.2rem;
+}
+
+.card-header h3 {
+	color: var(--background-color);
+}
+
+.card-title {
+	display: flex;
+	align-items: center;
+}
+
+.search,
+nue-filter {
+	display: flex;
+	align-items: center;
+	position: relative;
+	width: 100%;
+}
+
+nue-filter form {
+	display: flex;
+	align-items: center;
+	position: relative;
+	width: 100%;
+}
+
+.card-title .form-control {
+	padding-left: 2.5rem;
+	outline: 1px solid var(--default);
+	box-shadow: 0px 4px 8px rgba(0, 121, 107, 0.3);
+	transition: box-shadow 0.3s ease, outline-color 0.3s ease;
+}
+
+.search:hover .form-control {
+	outline-color: var(--primary-color2);
+}
+
+.form-control:focus,
+.form-select:focus {
+	outline-color: var(--primary-color2);
+	box-shadow: 0px 4px 12px var(--secondary-color2);
+}
+
+/* Cambiar el color del icono en focus y hover */
+.search:focus-within i,
+.search:hover i {
+	color: var(--primary-color2);
+}
+
+.card-title i {
+	position: absolute;
+	left: 1rem;
+	color: var(--default);
+}
+
+/*CARD BODY*/
+.card-body form:focus {}
+
+/*CARD FOOTER*/
+.card-footer {
+	background-color: transparent;
+}
+
+.card-footer>div {
+	display: flex;
+	justify-content: end;
+	gap: 1rem;
+}
+
+.card-footer button {
+	margin-top: 1rem;
+}
+
+.checkbox-container {
+	display: grid;
+	gap: 10px;
+	margin-top: 1rem;
+	margin-bottom: 2rem;
+  }
+  
+  .checkbox-item {
+	display: flex;
+	align-items: center;
+  }
+  
+  .checkbox-item input {
+	margin-right: 5px;
+  }
+  
+
+/*TABLE*/
+.custom-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.95rem;
+	color: #494949;
+	margin-top: 1rem;
+
+}
+
+.custom-table thead {
+	color: var(--primary-color2);
+	text-transform: uppercase;
+}
+
+#menuToggle{
+	margin-left: 0.65rem;
+}
+
+.custom-table th,
+.custom-table td {
+	padding: 0.5rem;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.custom-table thead span {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.2rem;
+}
+
+.custom-table thead span i {
+	font-size: 1.1rem;
+	color: var(--primary-color2);
+}
+
+.custom-table th {
+	white-space: nowrap;
+}
+
+.custom-table th:nth-child(2),
+/* Aplica a la columna "Nombre" */
+.custom-table td:nth-child(2) {
+	width: 30%;
+}
+
+.table-responsive tbody tr td:last-child,
+.table-responsive thead th:last-child {
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+}
+
+.table-responsive thead th:last-child {
+	gap: 0.2rem;
+}
+
+.custom-table tbody tr {
+	transition: background-color 0.3s ease;
+	cursor: pointer;
+	/* Indica que la fila es clickeable */
+}
+
+.custom-table tbody tr:hover {
+	background-color: #eaf4fd;
+}
+
+.btn-success {
+	margin-bottom: 0.75rem;
+}
+
+.download-container input[type="date"] {
+	width: 100%;
+	padding: 0.5rem;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	font-size: 0.95rem;
+	color: #494949;
+}
+
+.download-container {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	/* Espacio entre cada elemento del contenedor */
+}
+
+.download-container label {
+	margin-bottom: 0.5rem;
+	/* Espacio entre el label y el input */
+	font-weight: bold;
+	color: #494949;
+}
+
+
+.form-group.questions {
+	display: flex;
+	justify-content: space-between;
+	/* Asegura que el botón esté a la derecha del input */
+	align-items: center;
+	/* Alinea verticalmente los elementos */
+}
+
+.form-group.questions input {
+	flex-grow: 1;
+	/* Hace que el input ocupe el espacio disponible */
+	margin-right: 10px;
+	/* Deja un pequeño espacio entre el input y el botón */
+}
+
+.btn-delete-question {
+	margin-left: 10px;
+	/* Espacio entre el input y el botón */
+}
+
+textarea {
+	min-height: 150px;
+	/* Establece una altura mínima */
+	height: 200px;
+	/* Establece la altura deseada */
+}
+
+.filter-message {
+	margin-top: 2rem;
+	margin-left: 5rem;
+}
+
+/* Estilos para el botón de filtro en el th */
+thead div {
+	display: flex;
+	align-items: center;
+	gap: 0.3rem;
+}
+
+thead button {
+	background-color: var(--primary-color2);
+	padding: 0.2rem 0.3rem;
+	margin-bottom: 0.2rem;
+	border: none;
+	border-radius: 0.2rem;
+	font-size: 0.5rem;
+	color: var(--background-color);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+thead button:hover {
+	background-color: var(--secondary-color2);
+}
+
+/* Íconos de ordenamiento a la derecha */
+.sort-icons i {
+	font-size: 0.8rem !important;
+	cursor: pointer;
+}
+
+
+/* OPTIONS TABLE */
+.options {
+	gap: 1rem;
+}
+
+.options button {
+	margin-left: 0.2rem;
+	margin-bottom: 0.1rem;
+	display: inline-block;
+}
+
+.btn-action {
+	border: none;
+	color: var(--background-color);
+	cursor: pointer;
+	padding: 0.3rem 0.5rem;
+	border-radius: 0.5rem;
+	transition: color 0.3s ease, background-color 0.3s ease;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn-action.edit {
+	background-color: #28a745;
+}
+
+.btn-action.edit:hover {
+	background-color: #00811e;
+}
+
+.btn-action.view {
+	background-color: var(--primary-color2);
+}
+
+.btn-action.view:hover {
+	background-color: var(--secondary-color2);
+}
+
+.btn-action.delete {
+	background-color: var(--primary-color);
+}
+
+.btn-action.delete:hover {
+	background-color: var(--secondary-color);
+}
+
+/*PAGINATION*/
+.nav-pagination {
+	display: flex;
+	justify-content: center;
+	margin-top: 2.2rem;
+}
+
+.custom-pagination {
+	display: flex;
+	list-style: none;
+	padding: 0;
+	gap: 0.5rem;
+}
+
+.custom-pagination .page-item .page-link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.5rem;
+	height: 2.5rem;
+	font-size: 1rem;
+	color: #333;
+	border: none;
+	border-radius: 0.25rem;
+	background-color: transparent;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-pagination .page-item .page-link:focus {
+	background-color: var(--secondary-color2);
+	box-shadow: none;
+}
+
+/* Estilos de números de página */
+.custom-pagination .page-item .page-link:not(.first-page):not(.prev-page):not(.custom-page-link):not(.last-page) {
+	background-color: #f5f5f5;
+	color: var(--default);
+	font-weight: 500;
+}
+
+.custom-pagination .page-item .page-link:not(.first-page):not(.prev-page):not(.custom-page-link):not(.last-page):hover {
+	background-color: var(--primary-color2);
+	color: var(--background-color);
+}
+
+/* Activo */
+.custom-pagination .page-item.active .page-link {
+	background-color: var(--secondary-color2) !important;
+	color: #fff !important;
+}
+
+/* Flechas sin fondo */
+.custom-pagination img {
+	filter: invert(97%) sepia(16%) saturate(5385%) hue-rotate(170deg) brightness(78%) contrast(95%);
+}
+
+/* Hover para flechas */
+.custom-pagination .page-item .page-link:hover img {
+	filter: invert(23%) sepia(62%) saturate(2048%) hue-rotate(195deg) brightness(95%) contrast(93%);
+}
+
+.custom-pagination .page-item .page-link:focus img {
+	filter: invert(100%) sepia(100%) saturate(1%) hue-rotate(114deg) brightness(104%) contrast(101%);
+}
+
+/*----------------MODAL-----------------*/
+/*Modal Add Product*/
+#addProductModal .modal-dialog {
+	max-width: 96vw;
+	margin: 0rem 2rem;
+}
+
+.modal-lg .modal-content {
+	padding: 1.5rem;
+	font-size: 1rem;
+}
+
+.modal-header {
+	background-color: var(--primary-color2);
+	border-top-left-radius: 0.5rem;
+	border-top-right-radius: 0.5rem;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	padding: 0.5rem 1rem;
+}
+
+.modal-title {
+	color: var(--background-color);
+}
+
+
+.modal-body {
+	font-size: 1rem;
+	padding: 1rem 1.5rem;
+}
+
+.form-label {
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.form-control,
+.form-select {
+	font-size: 0.875rem;
+	padding: 0.75rem;
+}
+
+.view-label {
+	margin-top: 0.5rem;
+	margin-bottom: 0.75rem;
+}
+/* Color gris claro similar a Bootstrap 
+.form-control,
+.view-label.disabled {
+	background-color: #e9ecef; 
+	pointer-events: none;
+  }
+*/
+.conversation-question {
+	margin-right: 1rem;
+}
+
+.custom-close.btn-close::before {
+	content: none;
+}
+
+.btn-close {
+	color: var(--background-color);
+}
+
+.btn-primary {
+	background-color: var(--primary-color2);
+	/* Color de tu variable CSS */
+	border-color: var(--primary-color2);
+}
+
+.btn-secondary {
+	background-color: var(--secondary-color2);
+	/* Color de tu variable CSS */
+	border-color: var(--secondary-color2);
+}
+
+.modal-footer .btn {
+	margin-left: 0.5rem;
+}
+
+#confirmCancelModal .modal-content {
+	max-width: 400px;
+	font-size: 1rem;
+}
+
+#confirmCancelModal .modal-body {
+	text-align: center;
+}
+
+
+/*RESPONSIVE*/
+
+@media (max-width: 1440px) {
+	.table-responsive-xxl {
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+}
+
+.nue-modal .card-header {
+	color: var(--header-text-color);
+	text-align: center;
+}
+
+.nue-modal .card-footer {
+	text-align: center;
+	justify-content: end;
+}
+
+
+.nue-modal {
+	transition: opacity 3s ease-in-out;
+	position: fixed;
+	/* Keeps it in place */
+	top: 50%;
+	/* Centers vertically */
+	left: 50%;
+	/* Centers horizontally */
+	transform: translate(-50%, -50%);
+	/* Adjusts for centering */
+	z-index: 1050;
+	/* Ensures it's above other content */
+	background-color: #fff;
+	/* White background for the modal */
+	box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
+	/* Adds depth */
+	border-radius: 8px;
+	/* Rounded corners */
+	width: 80%;
+	/* Adjust width as needed */
+	max-width: 600px;
+	/* Maximum width */
+	padding: 16px;
+	/* Internal spacing */
+	overflow: hidden;
+	/* Hides overflowing content */
+	padding: 0;
+
+}
+
+.nue-modal-message {
+	/*    transition: opacity 1s ease-in-out;*/
+	position: fixed;
+	/* Keeps it in place */
+	top: 50%;
+	/* Centers vertically */
+	left: 50%;
+	/* Centers horizontally */
+	transform: translate(-50%, -50%);
+	/* Adjusts for centering */
+	z-index: 1050;
+	/* Ensures it's above other content */
+	background-color: #fff;
+	/* White background for the modal */
+	box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
+	/* Adds depth */
+	border-radius: 8px;
+	/* Rounded corners */
+	width: 80%;
+	/* Adjust width as needed */
+	max-width: 600px;
+	/* Maximum width */
+	padding: 16px;
+	/* Internal spacing */
+	overflow: hidden;
+	/* Hides overflowing content */
+	padding: 0;
+
+}
+
+
+.modal-backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.fade-in {
+	opacity: 0;
+	transition: opacity 0.3s ease-in;
+}
+
+.fade-in.show {
+	opacity: 1;
+}
+
+edit-knowledge-questionsrender .btn-success {
+	margin-top: 1rem;
+}
+
+
+.hide-text-nav .nav-link {
+	font-size: 0px;
+}
+
+app-root {
+	width: 100%;
+}
+
+
+.row-container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	border: 0;
+
+}
+
+#left-sidebar.sidebar-visible {
+	max-width: 150px;
+	width: 20%;
+	display: flex;
+}
+
+#main-work-area.sidebar-visible {
+	flex: 1;
+}
+
+
+#left-sidebar.sidebar-hide {
+	max-width: 50px;
+	width: 20%;
+	display: flex;
+}
+
+#main-work-area.sidebar-hide {
+	flex: 1;
+}
+
+
+#left-sidebar {
+    transition: max-width 0.3s ease, width 0.3s ease;
+  }
+  
+
+.main-div {
+	padding: 0px;
+}
+
+conversation-detail  div.form-group {
+    display: flex;
+    align-items: center;
+}
+
+conversation-detail  div.form-group > label {
+	min-width: 9rem;
+	margin-left: 0.5rem;
+}
+
+conversation-detail nue-view-form-group {
+	display: inline-block;
+	width: 33%;
+}
+
+
+conversation-detail  nue-view-form-group:nth-child(6) {
+	width: 100%;
+}
+
+
+conversation-detail  nue-view-form-group:nth-child(6) > div {
+	width: 100%;
+	display: block;
+
+}
+
+chat-message-render {
+    background-color: #f4f4f4;
+    width: 100%;
+    display: block;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+    padding-top: 1rem;
+	padding-bottom: 1rem;
+	border-radius: 20px;
+	border-color: #dee2e6;
+}
+
+chat-message-render .message-pair {
+	width: 100%;
+
+}
+
+chat-message-render .message-bubble{
+
+	color: #fff;
+	padding: 10px;
+	border-radius: 10px;
+	max-width: 60%;
+	word-wrap: break-word;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	margin-top: 5px; 
+	margin-right: 1rem;
+	margin-left: 1rem;
+	display: flex; 
+    flex-direction: column;
+	white-space: pre-wrap;
+}
+.message-user, .message-bot{
+
+	width: 100%;
+	display: flex;
+}
+chat-message-render .message-user{
+	justify-content: flex-start;
+}
+
+chat-message-render .message-bot{
+	justify-content: flex-end;
+}
+
+
+chat-message-render .message-bot .message-bubble{
+	background-color: #2673b2;
+}
+
+
+
+chat-message-render .message-user strong,
+chat-message-render .message-bot strong {
+    display: block; 
+    font-weight: bold; 
+    margin-bottom: 5px;
+}
+
+chat-message-render .message-user strong {
+    color: #444;
+}
+
+chat-message-render .message-user .message-bubble {
+    background-color: #e0e3e8; 
+    color: #444;
+}
+
+
+chat-message-render .message-bot strong {
+    color: #fff;
+}
+
+.message-time {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    align-self: flex-end;
+}
+
+.chat-message-render .message-user .message-time {
+    color: #444; 
+}
+
+.chat-message-render .message-bot .message-time {
+    color: #fff; 
+}
+
+
+.categories-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 1rem;
+	margin-bottom: 2rem;
+  }
+  
+
+  
+.navbar-scrolled{
+    background: linear-gradient(135deg, #00197E 0%, #F04A0C 52%, #00197E 100%);
+    background-size: 350% 350%;
+    animation: waveColors 16s ease infinite;
+}

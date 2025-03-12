@@ -8,8 +8,8 @@ export class ChatComponent extends LitElement {
   @state()
   ngrok_url: string = "https://equal-katydid-harmless.ngrok-free.app";
 
-  // miia_url: string = "https://miia.comtor.net:9192/chatbot-web/";
-  miia_url: string = "http://127.0.0.1:9192/chatbot-web/";
+  miia_url: string = "https://miia.comtor.net/miiaapi/chatbot-web/";
+  // miia_url: string = "http://127.0.0.1:9192/chatbot-web/";
 
   @state() private messages: Array<Message> = [];
   @query("#chatInput") input!: HTMLInputElement;
@@ -38,7 +38,7 @@ export class ChatComponent extends LitElement {
       let credential = this.getCredentials();
       this.messages = [...this.messages, { text: this.input.value, type: 'USER' }];
       let now = Math.floor(Date.now() / 1000)
-      const body: MessageDto = { to_user_code: credential.userinfo.email, to_user_name: credential.userinfo.nickname, message: this.input.value, chatbot_code: "SOFI", sent_timestamp: now.toString() };
+      const body: MessageDto = { to_user_code: credential.userinfo.email, to_user_name: credential.userinfo.nickname, message: this.input.value, chatbot_code: "COMTOR", sent_timestamp: now.toString() };
       this.input.value = '';
       const reqInit = {
         method: "POST",

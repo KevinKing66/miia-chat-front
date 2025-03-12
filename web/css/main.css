@@ -62,7 +62,7 @@ body {
 }
 a{
   text-decoration: none;
-  color: white !important;
+  /* color: white !important; */
 }
 input {
   flex-grow: 1;

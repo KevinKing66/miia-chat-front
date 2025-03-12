@@ -1,7 +1,7 @@
 export interface MessageDto{
     to_user_code: string;
     to_user_name?: string;
-    chatbot_code: 'SOFI';
+    chatbot_code: 'SOFI' | 'COMTOR';
     message: string; 
     sent_timestamp: string;
 }
