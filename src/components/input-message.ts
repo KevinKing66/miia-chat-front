@@ -13,6 +13,10 @@ export class InputMessageComponent extends LitElement{
     private messages: Array<Message> = [];
 
     @query("#chatInput") textarea!: HTMLInputElement;
+
+    @state()
+    status: "LOCK" | "FREE" = "FREE";
+
     
     private updateMessage(message: Message) {
         this.messages = [...this.messages, message];
@@ -30,6 +34,10 @@ export class InputMessageComponent extends LitElement{
     }
 
     private sendMessage(): void {
+        if(this.status === "LOCK"){
+            return;
+        }
+        this.status = "LOCK";
         if (this.textarea.value.trim()) {
             // let credential = SessionStatus.getCredentials();
             let credential = this.getCredentials();
@@ -48,14 +56,17 @@ export class InputMessageComponent extends LitElement{
             .then(resp => resp.json())
             .then(data => {
                 const reply: ReplyDTO = JSON.parse(data)[0] as ReplyDTO;
-                this.updateMessage({ text: reply.answer, type: 'BOT' })
+                this.updateMessage({ text: reply.answer, type: 'BOT' });
+            })
+            .finally(() => {
+                this.status = "FREE";
             });
         }
     }
 
 
     handleKeyDown(event: KeyboardEvent) {
-        if (event.key === "Enter") {
+        if (event.key === "Enter" && this.status === "FREE") {
             console.log("Enter pressed:", this.textarea.value);
             this.sendMessage();
         }
@@ -66,7 +77,7 @@ export class InputMessageComponent extends LitElement{
         return html`        
         <div class="input-container">
           <textarea id="chatInput" placeholder="Escribe un mensaje..." rows="1" style="resize: true;" @keydown=${this.handleKeyDown}></textarea>
-          <button @click="${this.sendMessage}">Enviar</button>
+          <button @click="${this.sendMessage}" ?hidden=${this.status === "LOCK"}>Enviar</button>
         </div>`;
     }
 
