@@ -1,4 +1,4 @@
-:root {
+ :root {
   --main-color: #1e1e1e;
   /* --second-color: #121212; */
   --second-color: #121212;
@@ -34,7 +34,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  overflow-y: auto;
+  background: var(--second-color);
+}
+.chat-container-msg {
+  display: flex;
   padding: 16px;
+  flex-direction: column;
   overflow-y: auto;
   background: var(--second-color);
 }
@@ -43,10 +49,15 @@ body {
   padding: 10px;
   margin: 5px 0;
   border-radius: 8px;
+  position: relative;
 }
 .message p{
   white-space: pre-line;
-  margin: 0;
+  margin: 0px;
+}
+.message.bot p{
+  white-space: pre-line;
+  margin: 0px 40px 0px 0px;
 }
 .user {
   align-self: flex-end;
@@ -162,17 +173,58 @@ button {
   height: 100%;
 }
 
-  .input-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-  #chatInput {
-    width: 150px;
-    height: 50px;
-    min-height: 30px;
-    max-height: 100px;
-    overflow-y: auto;
-    resize: none;
-  }
+#chatInput {
+  width: 150px;
+  height: 50px;
+  min-height: 30px;
+  max-height: 100px;
+  overflow-y: auto;
+  resize: none;
+}
+
+code {
+  display: block;
+  background-color: #282c34;
+  color: #abb2bf;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: "Courier New", monospace;
+  white-space: pre-wrap; /* Mantiene los saltos de línea */
+  word-wrap: break-word;
+  overflow-x: auto;
+}
+
+.code-container {
+  position: relative;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: white;
+    color: var(--main-color);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+
+.absulo {
+    position: absolute;
+}
+
+.copy-btn:hover {
+    background: #21a1f1;
+}
