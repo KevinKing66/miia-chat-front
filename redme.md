@@ -4,7 +4,7 @@ Necesitamos 3 terminales
 3. usar ngrok
 
 antes de eso necesitamos configurar el ngrok, ejecuta el siguiente comando:
-`ngrok http --url=equal-katydid-harmless.ngrok-free.app 80`
+`ngrok config add-authtoken 2u8klej9eu7x9r4KaeQBZtgymtE_6NWDJkS8EkasRsaUWVz9Q`
 
 1. Compilamos nuestro prpyeto con: 
 `npx webpack --config webpack.config.js --watch`
