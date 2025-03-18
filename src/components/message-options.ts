@@ -37,6 +37,7 @@ export class MessageComponent extends LitElement {
             <div class="message-options">
                 <button class="option-btn" @click=${() => this.copyToClipboard()} title="Copiar"><i class="fa-regular fa-copy"></i></button>
                 
+                <!---
                 <button class="${classMap({ 'option-btn': true, 'active': this.reaction === 'LIKE' })}"  @click=${() => this.likeMessage()}  title="Like">
                     <i class="fa-regular fa-thumbs-up"></i>
                 </button>
@@ -46,6 +47,7 @@ export class MessageComponent extends LitElement {
                 </button>
 
                 <button class="option-btn" @click=${() => this.generateNewResponse()} title="Nueva respuesta"><i class="fa-solid fa-rotate-right"></i></button>
+                ---!>
             </div>
             ` 
             : html``}`;
