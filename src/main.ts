@@ -1,3 +1,11 @@
+import { Singleton } from "./global/temp";
+
+const instance = Singleton.getInstance();
+instance.someMethod();
+
+
+
+
 console.log("holaaaaaaaa")
 import { GlobalConfig } from "./global/global-config"
 import { ChatService } from "./service/chat-service"
