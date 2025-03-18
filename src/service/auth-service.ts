@@ -4,7 +4,6 @@ import { GlobalConfig } from '../global/global-config';
 export class AuthService{
     base_url: string;
     constructor(){
-        console.log("GlobalConfig: ", GlobalConfig);
         this.base_url  = GlobalConfig.getInstance().authUrl;
     }
 
