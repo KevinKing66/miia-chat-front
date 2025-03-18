@@ -26,7 +26,6 @@ export class InputMessageComponent extends LitElement {
             bubbles: true,
             composed: true
         }));
-        console.log("mensajes desde input_msg: ", this.messages);
     }
 
 
@@ -36,7 +35,7 @@ export class InputMessageComponent extends LitElement {
         }
         this.status = "LOCK";
         if (this.textarea.value.trim()) {
-            let credential = SessionStatus.getCredentials();
+            let credential = SessionStatus.getInstance().getCredentials();
             this.updateMessage({ text: this.textarea.value.trim(), type: 'USER' });
             let now = Math.floor(Date.now() / 1000)
             const body: MessageDto = { to_user_code: credential.userinfo.email, to_user_name: credential.userinfo.nickname, message: this.textarea.value, chatbot_code: "COMTOR", sent_timestamp: now.toString() };
@@ -62,7 +61,6 @@ export class InputMessageComponent extends LitElement {
 
     handleKeyDown(event: KeyboardEvent) {
         if (event.key === "Enter" && this.status === "FREE") {
-            console.log("Enter pressed:", this.textarea.value);
             this.sendMessage();
         }
     }
