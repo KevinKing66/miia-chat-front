@@ -5,3 +5,8 @@ import { InputMessageComponent } from "./components/input-message"
 import { MessageComponent } from "./components/message"
 import { HistoryChatsComponent } from "./components/history-chats"
 import { MessageContainer } from "./components/messages-container"
+
+
+import { GlobalConfig } from "./global/global-config"
+import { AuthService } from "./service/auth-service"
+import { ChatService } from "./service/chat-service"

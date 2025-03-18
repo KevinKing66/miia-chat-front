@@ -1,15 +1,15 @@
-import { html, LitElement } from "lit";
+import { html, LitElement, PropertyValues } from "lit";
 import { property, state, customElement, query } from 'lit/decorators.js';
 import { AuthResponse, Message, MessageDto, ReplyDTO } from "../dto/chat";
-
 import { SessionStatus } from './../session/session-status';
+// import { AxiosResponse } from "axios";
+import { ChatService } from "./../service/chat-service";
+// import GlobalConfig from '../global/global-config';
 
 @customElement("input-message-component")
-export class InputMessageComponent extends LitElement{
-    readonly ngrok_url = "https://equal-katydid-harmless.ngrok-free.app";
-    readonly miia_url = "https://miia.comtor.net/miiaapi/chatbot-web/";
+export class InputMessageComponent extends LitElement {
 
-    @property() 
+    @property()
     private messages: Array<Message> = [];
 
     @query("#chatInput") textarea!: HTMLInputElement;
@@ -17,7 +17,8 @@ export class InputMessageComponent extends LitElement{
     @state()
     status: "LOCK" | "FREE" = "FREE";
 
-    
+    service: ChatService = ChatService.getInstance();
+
     private updateMessage(message: Message) {
         this.messages = [...this.messages, message];
         this.dispatchEvent(new CustomEvent('messages-updated', {
@@ -28,13 +29,13 @@ export class InputMessageComponent extends LitElement{
         console.log("mensajes desde input_msg: ", this.messages);
     }
 
-    getCredentials(): AuthResponse{
+    getCredentials(): AuthResponse {
         let credentials: AuthResponse = JSON.parse(sessionStorage.credentials);
         return credentials;
     }
 
     private sendMessage(): void {
-        if(this.status === "LOCK"){
+        if (this.status === "LOCK") {
             return;
         }
         this.status = "LOCK";
@@ -45,23 +46,23 @@ export class InputMessageComponent extends LitElement{
             let now = Math.floor(Date.now() / 1000)
             const body: MessageDto = { to_user_code: credential.userinfo.email, to_user_name: credential.userinfo.nickname, message: this.textarea.value, chatbot_code: "COMTOR", sent_timestamp: now.toString() };
             this.textarea.value = ``;
-            const reqInit = {
-                method: "POST",
-                headers: {
-                "Content-Type": "application/json",
-                },
-                body: JSON.stringify(body),
-            }
-        fetch(this.miia_url, reqInit)
-            .then(resp => resp.json())
-            .then(data => {
-                const reply: ReplyDTO = JSON.parse(data)[0] as ReplyDTO;
-                this.updateMessage({ text: reply.answer, type: 'BOT' });
-            })
-            .finally(() => {
-                this.status = "FREE";
-            });
+            this.service.sendMessages(body, this.callback.bind(this), this.onError.bind(this), this.onFinally.bind(this));
         }
+    }
+
+    callback(response: any) {
+        console.log("sendMsg: ", response);
+        // let data = response.json();
+        // const reply: ReplyDTO = JSON.parse(data)[0] as ReplyDTO;
+        // this.updateMessage({ text: reply.answer, type: 'BOT' });
+    }
+
+    onError(error: Error) {
+
+    }
+
+    onFinally() {
+        this.status = "FREE";
     }
 
 
@@ -73,15 +74,29 @@ export class InputMessageComponent extends LitElement{
     }
 
 
-    render(){
+    render() {
         return html`        
         <div class="input-container">
-          <textarea id="chatInput" placeholder="Escribe un mensaje..." rows="1" style="resize: true;" @keydown=${this.handleKeyDown}></textarea>
+          <textarea id="chatInput" class="chat-input" placeholder="Escribe un mensaje..." rows="1" style="resize: true;" @keydown=${this.handleKeyDown}></textarea>
           <button @click="${this.sendMessage}" ?hidden=${this.status === "LOCK"}>Enviar</button>
         </div>`;
     }
 
     protected createRenderRoot() {
         return this;
+    }
+
+    protected updated(_changedProperties: PropertyValues): void {
+        if (this.textarea) {
+            this.textarea.addEventListener('input', this.autoResize);
+            this.autoResize(); // Ajuste inicial
+        }
+    }
+
+
+    autoResize() {
+        // const textarea = event.target as HTMLTextAreaElement;
+        this.textarea.style.height = 'auto';
+        this.textarea.style.height = `${this.textarea.scrollHeight}px`;
     }
 }
