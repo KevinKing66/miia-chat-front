@@ -1,5 +1,5 @@
 // global-config.ts
-
+console.log("Entraa GlobalConfig");
 export class GlobalConfig {
     private static instance: GlobalConfig;
     public readonly apiUrl: string;
@@ -16,11 +16,15 @@ export class GlobalConfig {
 
     // Method to get the singleton instance
     public static getInstance(): GlobalConfig {
+        console.log("Entraa GlobalConfig.getIntance()");
         if (!GlobalConfig.instance) {
             GlobalConfig.instance = new GlobalConfig();
         }
+        console.log("pasa if GlobalConfig.getIntance()");
         return GlobalConfig.instance;
     }
 }
+GlobalConfig.getInstance();
+console.log("sale GlobalConfig");
 
 // export default GlobalConfig;

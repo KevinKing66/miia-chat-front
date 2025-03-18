@@ -4,6 +4,7 @@
   "description": "Miia frontend",
   "main": "index.js",
   "dependencies": {
+    "axios": "^1.8.3",
     "lit": "^3.2.1",
     "lit-element": "^4.1.1",
     "lit-html": "^3.2.1",

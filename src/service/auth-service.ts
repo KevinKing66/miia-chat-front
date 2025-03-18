@@ -2,10 +2,14 @@ import axios, { AxiosHeaders, AxiosResponse, RawAxiosRequestHeaders } from 'axio
 import { GlobalConfig } from '../global/global-config';
 
 export class AuthService{
-    static BASE_URL = GlobalConfig.getInstance().authUrl;
+    base_url: string;
+    constructor(){
+        console.log("GlobalConfig: ", GlobalConfig);
+        this.base_url  = GlobalConfig.getInstance().authUrl;
+    }
 
     public findCredential(callback: (response: AxiosResponse<any, any>) => void, onError: (error: Error) => void) {
-        axios.get("AuthService.BASE_URL" + "/user-info").then((response) => {
+        axios.get(this.base_url + "/user-info").then((response) => {
             callback(response);
         }).catch((error: Error) => {
             onError(error);

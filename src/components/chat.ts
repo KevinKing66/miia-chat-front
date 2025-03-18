@@ -1,11 +1,22 @@
 import { LitElement, html, css, PropertyValues } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { AuthResponse, Message, MessageDto, ReplyDTO } from '../dto/chat';
+import { ChatService } from '../service/chat-service';
 
 @customElement("chat-component")
 export class ChatComponent extends LitElement {
-  readonly ngrok_url = "https://equal-katydid-harmless.ngrok-free.app";
-  readonly miia_url = "https://miia.comtor.net/miiaapi/chatbot-web/";
+    ngrok_url: string;
+    miia_url: string;
+    service: ChatService;
+
+  constructor() {
+    super();
+    this.ngrok_url = "https://equal-katydid-harmless.ngrok-free.app";
+    this.miia_url = "https://miia.comtor.net/miiaapi/chatbot-web/";
+    console.log("ChatComponent show ChatService: ", ChatService);
+    this.service = new ChatService();
+  }
+
 
   @state() private messages: Array<Message> = [];
 
