@@ -17,3 +17,5 @@ export class Singleton {
     }
   }
   
+  let singletonInstance: Singleton = Singleton.getInstance();
+  export { singletonInstance };

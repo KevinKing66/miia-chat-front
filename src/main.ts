@@ -1,7 +1,7 @@
-import { Singleton } from "./global/temp";
+import { Singleton, singletonInstance } from "./global/temp";
 
-const instance = Singleton.getInstance();
-instance.someMethod();
+
+singletonInstance.someMethod();
 
 
 
