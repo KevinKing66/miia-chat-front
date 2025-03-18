@@ -45,7 +45,7 @@ export class MessageComponent extends LitElement {
                     <i class="fa-regular fa-thumbs-down"></i>
                 </button>
 
-                <button class="option-btn" @click=${() => this.copyToClipboard()} title="Nueva respuesta"><i class="fa-solid fa-rotate-right"></i></button>
+                <button class="option-btn" @click=${() => this.generateNewResponse()} title="Nueva respuesta"><i class="fa-solid fa-rotate-right"></i></button>
             </div>
             ` 
             : html``}`;
