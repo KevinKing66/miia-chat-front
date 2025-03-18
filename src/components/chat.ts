@@ -3,44 +3,34 @@ import { customElement, property, query, state } from 'lit/decorators.js';
 import { AuthResponse, Message, MessageDto, ReplyDTO } from '../dto/chat';
 import { GlobalConfig } from '../global/global-config'; 
 import { ChatService } from '../service/chat-service';
+import { AuthService } from '../service/auth-service';
 
 @customElement("chat-component")
 export class ChatComponent extends LitElement {
-    ngrok_url: string;
-    miia_url: string;
-    service: ChatService;
-
-  constructor() {
-    super();
-    console.log("ChatComponent constructor");
-    
-    this.ngrok_url = "https://equal-katydid-harmless.ngrok-free.app";
-    this.miia_url = "https://miia.comtor.net/miiaapi/chatbot-web/";
-    /*
-    this.service = ChatService.getInstance();
-    */
-    console.log("ChatComponent constructor end");
-  }
-
+  service: AuthService = new AuthService();;
 
   @state() private messages: Array<Message> = [];
 
 
-  fetchData(): void {
-    fetch(`${this.ngrok_url}/user-info`)
-      .then(response => response.json())
-      .then(data => {
-        sessionStorage.credentials = JSON.stringify(data);
-        let msg: Message = { text: `Hola ${data.userinfo.nickname}, ¿Cómo puedo ayudarte hoy?`, type: 'BOT' };
-        let msg2: Message = { text: "Texto con **negrita**, *cursiva* y `código a copiar`.", type: 'BOT' };
-        this.messages = [msg, msg2];
-      })
-      .catch(error => console.error("Error en la solicitud:", error));
+  loadCredentials(): void {
+    this.service.findCredential(this.callback.bind(this), this.onError.bind(this));
+  }
+
+  callback(resp) {
+    const { data } = resp;
+    sessionStorage.credentials = JSON.stringify(data);
+    let msg: Message = { text: `Hola ${data.userinfo.nickname}, ¿Cómo puedo ayudarte hoy?`, type: 'BOT' };
+    let msg2: Message = { text: "Texto con **negrita**, *cursiva* y `código a copiar`.", type: 'BOT' };
+    this.messages = [msg, msg2];
+  }
+
+  onError(error: Error) {
+    console.error("Error en la solicitud:", error);
   }
 
   private updateMessages(event: CustomEvent) {
-    console.log("Evento recibido en el padre:", event.detail);
-    this.messages = [...event.detail]; // Actualiza los mensajes correctamente
+    // console.log("Evento recibido en el padre:", event.detail);
+    this.messages = [...event.detail];
   }
 
 
@@ -58,7 +48,7 @@ export class ChatComponent extends LitElement {
 
   async connectedCallback() {
     super.connectedCallback(); // Importante llamar al método padre
-    await this.fetchData();
+    await this.loadCredentials();
   }
 
   protected createRenderRoot() {
