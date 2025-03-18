@@ -14,7 +14,7 @@ export class ChatComponent extends LitElement {
     this.ngrok_url = "https://equal-katydid-harmless.ngrok-free.app";
     this.miia_url = "https://miia.comtor.net/miiaapi/chatbot-web/";
     console.log("ChatComponent show ChatService: ", ChatService);
-    this.service = new ChatService();
+    this.service = ChatService.getInstance();
   }
 
 

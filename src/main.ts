@@ -1,12 +1,4 @@
-import { Singleton, singletonInstance } from "./global/temp";
-
-
-singletonInstance.someMethod();
-
-
-
-
-console.log("holaaaaaaaa")
+console.log("holaaaaaaaa");
 import { GlobalConfig } from "./global/global-config"
 import { ChatService } from "./service/chat-service"
 import { MiiaHeader } from "./components/miia-header"
@@ -18,6 +10,6 @@ import { HistoryChatsComponent } from "./components/history-chats"
 import { MessageContainer } from "./components/messages-container"
 
 
-// import { AuthService } from "./service/auth-service"
+import { AuthService } from "./service/auth-service"
 
-console.log("si cargaron")
+console.log("si cargaron");
