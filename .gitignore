@@ -1,5 +1,5 @@
 # Ignore node_modules directory
 node_modules/
-web/project-js/
+dist/web/project-js/
 yarn.lock
 package-lock.json
