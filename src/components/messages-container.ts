@@ -25,9 +25,8 @@ export class MessageContainer extends LitElement{
       
       updated(changedProperties: Map<PropertyKey, unknown>) {
         if (changedProperties.has("messages")) {
-          console.log("Se actualizaron los mensajes");
+          this.scrollToBottom();
         }
-        this.scrollToBottom();
       }
 
     protected render() {
