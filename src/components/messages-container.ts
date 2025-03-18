@@ -11,12 +11,11 @@ export class MessageContainer extends LitElement{
     @query("#chatContainerMsg") chatContainer!: HTMLElement;
       
       private scrollToBottom() {
-
-          if (this.chatContainer) {
-              requestAnimationFrame(() => {
-                  this.chatContainer.scrollTop = this.chatContainer.scrollHeight;
-              });
-          }
+        if (this.chatContainer) {
+            requestAnimationFrame(() => {
+                this.chatContainer.scrollTop = this.chatContainer.scrollHeight;
+            });
+        }
       }
     
       protected firstUpdated(_changedProperties: PropertyValues): void {
