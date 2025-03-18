@@ -5,7 +5,7 @@ import { MessageDto } from '../dto/chat';
 export class ChatService {
     private static instance: ChatService;
 
-    private constructor(){
+    constructor(){
 
     }
 
