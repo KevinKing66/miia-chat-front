@@ -1,15 +1,16 @@
-console.log("holaaaaaaaa");
-import { GlobalConfig } from "./global/global-config"
-import { ChatService } from "./service/chat-service"
-import { MiiaHeader } from "./components/miia-header"
-import { UserWidgetStatus } from "./components/user-status-widget"
-import { ChatComponent } from "./components/chat"
-import { InputMessageComponent } from "./components/input-message"
-import { MessageComponent } from "./components/message"
-import { HistoryChatsComponent } from "./components/history-chats"
-import { MessageContainer } from "./components/messages-container"
+console.log("holaaaaaaaa 4444");
 
 
-import { AuthService } from "./service/auth-service"
+import  "./global/global-config";
+import  "./service/chat-service";
+import  "./components/miia-header";
+import  "./components/user-status-widget";
+import   "./components/chat";
+import   "./components/input-message";
+import  "./components/message";
+import  "./components/history-chats";
+import  "./components/messages-container";
+import "./service/auth-service";
 
+import "./components/hello-world";
 console.log("si cargaron");

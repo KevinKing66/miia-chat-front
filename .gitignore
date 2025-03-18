@@ -3,3 +3,5 @@ node_modules/
 dist/web/project-js/
 yarn.lock
 package-lock.json
+__pycache__
+web/project-js/

@@ -1,6 +1,7 @@
 import { LitElement, html, css, PropertyValues } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { AuthResponse, Message, MessageDto, ReplyDTO } from '../dto/chat';
+import { GlobalConfig } from '../global/global-config'; 
 import { ChatService } from '../service/chat-service';
 
 @customElement("chat-component")
@@ -11,10 +12,14 @@ export class ChatComponent extends LitElement {
 
   constructor() {
     super();
+    console.log("ChatComponent constructor");
+    
     this.ngrok_url = "https://equal-katydid-harmless.ngrok-free.app";
     this.miia_url = "https://miia.comtor.net/miiaapi/chatbot-web/";
-    console.log("ChatComponent show ChatService: ", ChatService);
+    /*
     this.service = ChatService.getInstance();
+    */
+    console.log("ChatComponent constructor end");
   }
 
 
