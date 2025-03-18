@@ -29,10 +29,6 @@ export class InputMessageComponent extends LitElement {
         console.log("mensajes desde input_msg: ", this.messages);
     }
 
-    getCredentials(): AuthResponse {
-        let credentials: AuthResponse = JSON.parse(sessionStorage.credentials);
-        return credentials;
-    }
 
     private sendMessage(): void {
         if (this.status === "LOCK") {
@@ -40,8 +36,7 @@ export class InputMessageComponent extends LitElement {
         }
         this.status = "LOCK";
         if (this.textarea.value.trim()) {
-            // let credential = SessionStatus.getCredentials();
-            let credential = this.getCredentials();
+            let credential = SessionStatus.getCredentials();
             this.updateMessage({ text: this.textarea.value.trim(), type: 'USER' });
             let now = Math.floor(Date.now() / 1000)
             const body: MessageDto = { to_user_code: credential.userinfo.email, to_user_name: credential.userinfo.nickname, message: this.textarea.value, chatbot_code: "COMTOR", sent_timestamp: now.toString() };
@@ -50,11 +45,10 @@ export class InputMessageComponent extends LitElement {
         }
     }
 
-    callback(response: any) {
-        console.log("sendMsg: ", response);
-        // let data = response.json();
-        // const reply: ReplyDTO = JSON.parse(data)[0] as ReplyDTO;
-        // this.updateMessage({ text: reply.answer, type: 'BOT' });
+    callback(response) {
+        const data = response.data;
+        const reply: ReplyDTO = JSON.parse(data)[0] as ReplyDTO;
+        this.updateMessage({ text: reply.answer, type: 'BOT' });
     }
 
     onError(error: Error) {
@@ -88,14 +82,13 @@ export class InputMessageComponent extends LitElement {
 
     protected updated(_changedProperties: PropertyValues): void {
         if (this.textarea) {
-            this.textarea.addEventListener('input', this.autoResize);
-            this.autoResize(); // Ajuste inicial
+            this.textarea.addEventListener('input', this.autoResize.bind(this));
+            this.autoResize();
         }
     }
 
 
     autoResize() {
-        // const textarea = event.target as HTMLTextAreaElement;
         this.textarea.style.height = 'auto';
         this.textarea.style.height = `${this.textarea.scrollHeight}px`;
     }
