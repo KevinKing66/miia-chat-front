@@ -37,10 +37,11 @@ export class MessageComponent extends LitElement {
 
     render() {
         return html`
-        ${this.msg?.type == "BOT" ? 
-        html`<button class="copy-btn" @click=${() => this.copyToClipboard()} title="Copiar"><i class="fa-solid fa-clipboard"></i></button>` 
-            : html``}
-            <p .innerHTML=${this.parseText(this.msg?.text)}></p>`;
+            <div class="message-options-container">
+                <p .innerHTML=${this.parseText(this.msg?.text)}></p>
+                <options-messages-component .msg=${this.msg}></options-messages-component>
+            </div>
+            `;
     }
 
     protected createRenderRoot() {
