@@ -39,7 +39,7 @@ export class InputMessageComponent extends LitElement {
             this.updateMessage({ text: this.textarea.value.trim(), type: 'USER' });
             let now = Math.floor(Date.now() / 1000)
             const body: MessageDto = { to_user_code: credential.userinfo.email, to_user_name: credential.userinfo.nickname, message: this.textarea.value, chatbot_code: "COMTOR", sent_timestamp: now.toString() };
-            this.textarea.value = ``;
+            this.clearTextArea();
             this.service.sendMessages(body, this.callback.bind(this), this.onError.bind(this), this.onFinally.bind(this));
         }
     }
@@ -58,6 +58,12 @@ export class InputMessageComponent extends LitElement {
         this.status = "FREE";
     }
 
+    clearTextArea(){
+        this.textarea.value = ''.trim();
+        this.textarea.innerHTML = '';
+        this.textarea.textContent = '';  
+    }
+
 
     handleKeyDown(event: KeyboardEvent) {
         if (event.key === "Enter" && this.status === "FREE") {
@@ -70,7 +76,7 @@ export class InputMessageComponent extends LitElement {
         return html`        
         <div class="input-container">
           <textarea id="chatInput" class="chat-input" placeholder="Escribe un mensaje..." rows="1" style="resize: true;" @keydown=${this.handleKeyDown}></textarea>
-          <button @click="${this.sendMessage}" ?hidden=${this.status === "LOCK"}>Enviar</button>
+          <button class="send" @click="${this.sendMessage}" ?hidden=${this.status === "LOCK"}><i class="fa-solid fa-paper-plane"></i></button>
         </div>`;
     }
 
