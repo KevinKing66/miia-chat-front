@@ -1,6 +1,6 @@
 import { html, LitElement } from "lit";
 import { property, state, customElement } from 'lit/decorators.js';
-import { Message } from "../dto/chat";
+import { Message } from "../../dto/chat";
 
 @customElement("message-component")
 export class MessageComponent extends LitElement {

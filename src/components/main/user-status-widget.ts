@@ -1,8 +1,8 @@
 import { LitElement, TemplateResult, html} from "lit";
 import {  customElement, property, state } from 'lit/decorators.js';
 // import { SessionStatus } from "../session/session-status";
-import { OptionMenu } from "../entity/advanced-html-entities";
-import { SessionStatus } from "../session/session-status";
+import { OptionMenu } from "../../entity/advanced-html-entities";
+import { SessionStatus } from "../../session/session-status";
 
 
 @customElement('user-status-widget')

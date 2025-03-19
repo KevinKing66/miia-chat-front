@@ -1,9 +1,9 @@
 import { html, LitElement, PropertyValues } from "lit";
 import { property, state, customElement, query } from 'lit/decorators.js';
-import { AuthResponse, Message, MessageDto, ReplyDTO } from "../dto/chat";
-import { SessionStatus } from './../session/session-status';
+import { AuthResponse, Message, MessageDto, ReplyDTO } from "../../dto/chat";
+import { SessionStatus } from '../../session/session-status';
 // import { AxiosResponse } from "axios";
-import { ChatService } from "./../service/chat-service";
+import { ChatService } from "../../service/chat-service";
 // import GlobalConfig from '../global/global-config';
 
 @customElement("input-message-component")
@@ -14,8 +14,8 @@ export class InputMessageComponent extends LitElement {
 
     @query("#chatInput") textarea!: HTMLInputElement;
 
-    @state()
-    status: "LOCK" | "FREE" = "FREE";
+    @property()
+    status: "LOADING" | "FREE" = "FREE";
 
     service: ChatService = ChatService.getInstance();
 
@@ -28,13 +28,23 @@ export class InputMessageComponent extends LitElement {
         }));
     }
 
+    private updateStatus(status: "LOADING" | "FREE") {
+        this.status = status;
+        this.dispatchEvent(new CustomEvent('status-update', {
+            detail: status,
+            bubbles: true,
+            composed: true
+        }));
+    }
+
 
     private sendMessage(): void {
-        if (this.status === "LOCK") {
+        if (this.status === "LOADING") {
             return;
         }
-        this.status = "LOCK";
+
         if (this.textarea.value.trim()) {
+            this.updateStatus("LOADING");
             let credential = SessionStatus.getInstance().getCredentials();
             this.updateMessage({ text: this.textarea.value.trim(), type: 'USER' });
             let now = Math.floor(Date.now() / 1000)
@@ -55,7 +65,7 @@ export class InputMessageComponent extends LitElement {
     }
 
     onFinally() {
-        this.status = "FREE";
+        this.updateStatus("FREE");
     }
 
     clearTextArea(){
@@ -76,7 +86,7 @@ export class InputMessageComponent extends LitElement {
         return html`        
         <div class="input-container">
           <textarea id="chatInput" class="chat-input" placeholder="Escribe un mensaje..." rows="1" style="resize: true;" @keydown=${this.handleKeyDown}></textarea>
-          <button class="send" @click="${this.sendMessage}" ?hidden=${this.status === "LOCK"}><i class="fa-solid fa-paper-plane"></i></button>
+          <button class="send" @click="${this.sendMessage}" ?hidden=${this.status === "LOADING"}><i class="fa-solid fa-paper-plane"></i></button>
         </div>`;
     }
 

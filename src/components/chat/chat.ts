@@ -1,16 +1,17 @@
 import { LitElement, html, css, PropertyValues } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import { AuthResponse, Message, MessageDto, ReplyDTO } from '../dto/chat';
-import { GlobalConfig } from '../global/global-config'; 
-import { ChatService } from '../service/chat-service';
-import { AuthService } from '../service/auth-service';
-import { SessionStatus } from '../session/session-status';
+import { AuthResponse, Message, MessageDto, ReplyDTO } from '../../dto/chat';
+import { GlobalConfig } from '../../global/global-config'; 
+import { ChatService } from '../../service/chat-service';
+import { AuthService } from '../../service/auth-service';
+import { SessionStatus } from '../../session/session-status';
 
 @customElement("chat-component")
 export class ChatComponent extends LitElement {
   service: AuthService = new AuthService();;
 
   @state() private messages: Array<Message> = [];
+  @state() private status: "LOADING" | "FREE" = "FREE";
 
 
   loadCredentials(): void {
@@ -34,15 +35,18 @@ export class ChatComponent extends LitElement {
     this.messages = [...event.detail];
   }
 
+  private updateStatus(status: CustomEvent<"LOADING" | "FREE">) {
+    this.status = status.detail;
+  }
 
 
   render() {
     return html`
       <div class="chat-content">
 
-        <messages-container .messages="${this.messages}" class="chat-container"></messages-container>
+        <messages-container .messages="${this.messages}" .status="${this.status}" class="chat-container"></messages-container>
 
-        <input-message-component .messages="${this.messages}" @messages-updated="${this.updateMessages}"></input-message-component>
+        <input-message-component .messages="${this.messages}" @messages-updated="${this.updateMessages}" .status="${this.status}" @status-update="${this.updateStatus}"></input-message-component>
       </div>
     `;
   }
