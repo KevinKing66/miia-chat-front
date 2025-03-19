@@ -12,6 +12,10 @@ export class MultipleFileInput extends LitElement {
       align-items: center;
       gap: 10px;
       cursor: pointer;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: #f9f9f9;
     }
     .preview-container {
       display: flex;
@@ -25,6 +29,9 @@ export class MultipleFileInput extends LitElement {
       position: relative;
       width: 100px;
       height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .preview {
       width: 100%;
@@ -56,6 +63,7 @@ export class MultipleFileInput extends LitElement {
       background: #f4f4f4;
       border: 1px solid #ccc;
       border-radius: 5px;
+      text-align: center;
     }
     input[type="file"] {
       display: none;
@@ -79,7 +87,9 @@ export class MultipleFileInput extends LitElement {
                 fileArray.push({ name: file.name, type: file.type, data: e.target.result });
                 this.files = [...fileArray];
             };
-            reader.readAsDataURL(file);
+            if (file.type.startsWith('image/') || file.type === 'application/pdf') {
+                reader.readAsDataURL(file);
+            }
         });
     }
 
@@ -91,14 +101,16 @@ export class MultipleFileInput extends LitElement {
         return html`
       <label class="upload-container">
         <i class="fa-solid fa-paperclip icon"></i>
-        <input type="file" multiple @change="${this.handleFileChange}" hidden />
+        <input type="file" multiple @change="${this.handleFileChange}" accept="image/*,application/pdf" hidden />
       </label>
       <div class="preview-container">
         ${this.files.map((file, index) => html`
           <div class="preview-wrapper">
             ${file.type.startsWith('image/')
                 ? html`<img class="preview" src="${file.data}" alt="${file.name}" />`
-                : html`<div class="file-icon">${file.name}</div>`}
+                : file.type === 'application/pdf'
+                ? html`<div class="file-icon"><img class="preview" src="https://cdn-icons-png.flaticon.com/512/4208/4208479.png" /></div>`
+                    : html`<div class="file-icon">${file.name}</div>`}
             <button class="delete-btn-img" @click="${() => this.removeFile(index)}">×</button>
           </div>
         `)}
