@@ -1,6 +1,5 @@
 import { LitElement, TemplateResult, html} from "lit";
 import {  customElement, property, state } from 'lit/decorators.js';
-// import { SessionStatus } from "../session/session-status";
 import { OptionMenu } from "../../entity/advanced-html-entities";
 import { SessionStatus } from "../../session/session-status";
 
@@ -8,7 +7,6 @@ import { SessionStatus } from "../../session/session-status";
 @customElement('user-status-widget')
 export class UserWidgetStatus extends LitElement {
     @state() popupVisible: boolean = false;
-    @property({type: String}) username: string = "";
 
     getOptions(): OptionMenu[] {
         let options: OptionMenu[] = [];
@@ -30,13 +28,17 @@ export class UserWidgetStatus extends LitElement {
                 <i class="bi bi-person"></i>
             </a>
             <div class="dropdown-menu">
-                ${this.renderMenuOptions()}                    
-                <a href="/logout" id="qsLogoutBtn" style="color: white;">Cerrar sesión</a>
+                <p style="color: #444 !important; text-align: center; font-weight: bolder; border-bottom: 2px solid black; padding-bottom: 10px;">${this.getName()}</p>
+                ${this.renderMenuOptions()}
+                <a href="/logout" id="qsLogoutBtn" style="color: #444 !important;">Cerrar sesión</a>
             </div>
         </div>
-        
         `;
         
+    }
+
+    getName(){
+        return SessionStatus.getInstance().getCredentials().userinfo.nickname;
     }
 
     closeSession(event: PointerEvent){
