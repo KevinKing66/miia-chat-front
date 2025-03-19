@@ -7,18 +7,44 @@ export class MultipleFileInput extends LitElement {
     :host {
       display: block;
     }
+    .upload-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
     .preview-container {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 10px;
+      max-height: 200px;
+      overflow-y: auto;
     }
-    .preview {
+    .preview-wrapper {
+      position: relative;
       width: 100px;
       height: 100px;
+    }
+    .preview {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       border: 1px solid #ccc;
       border-radius: 5px;
+    }
+    .delete-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      cursor: pointer;
     }
     .file-icon {
       width: 100px;
@@ -31,6 +57,13 @@ export class MultipleFileInput extends LitElement {
       border: 1px solid #ccc;
       border-radius: 5px;
     }
+    input[type="file"] {
+      display: none;
+    }
+    .icon {
+      font-size: 24px;
+      color: #555;
+    }
   `;
 
     @state()
@@ -38,28 +71,42 @@ export class MultipleFileInput extends LitElement {
 
     handleFileChange(event) {
         const fileList = event.target.files;
-        const fileArray = [];
+        const fileArray = [...this.files];
 
         Array.from(fileList).forEach((file: File) => {
             const reader = new FileReader();
             reader.onload = (e) => {
-                fileArray.push({ name: file.name, type: file.type, data: (e.target as FileReader).result });
+                fileArray.push({ name: file.name, type: file.type, data: e.target.result });
                 this.files = [...fileArray];
             };
             reader.readAsDataURL(file);
         });
     }
 
+    removeFile(index) {
+        this.files = this.files.filter((_, i) => i !== index);
+    }
+
     render() {
         return html`
-      <input type="file" multiple @change="${this.handleFileChange}" class="send"><i class="fa-solid fa-paperclip"></i></input>
+      <label class="upload-container">
+        <i class="fa-solid fa-paperclip icon"></i>
+        <input type="file" multiple @change="${this.handleFileChange}" hidden />
+      </label>
       <div class="preview-container">
-        ${this.files.map(file => html`
-          ${file.type.startsWith('image/')
+        ${this.files.map((file, index) => html`
+          <div class="preview-wrapper">
+            ${file.type.startsWith('image/')
                 ? html`<img class="preview" src="${file.data}" alt="${file.name}" />`
                 : html`<div class="file-icon">${file.name}</div>`}
+            <button class="delete-btn-img" @click="${() => this.removeFile(index)}">×</button>
+          </div>
         `)}
       </div>
     `;
+    }
+
+    protected createRenderRoot(): HTMLElement | DocumentFragment {
+        return this;
     }
 }

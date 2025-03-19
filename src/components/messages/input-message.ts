@@ -83,11 +83,15 @@ export class InputMessageComponent extends LitElement {
 
 
     render() {
-        return html`        
-        <div class="input-container">
-          <textarea id="chatInput" class="chat-input" placeholder="Escribe un mensaje..." rows="1" style="resize: true;" @keydown=${this.handleKeyDown}></textarea>
-          <button class="send" @click="${this.sendMessage}" ?hidden=${this.status === "LOADING"}><i class="fa-solid fa-paper-plane"></i></button>
-        </div>`;
+        return html`
+        <div class="inputs-container">
+            <div class="input-wrap-container">
+                <textarea id="chatInput" class="chat-input" placeholder="Escribe un mensaje..." rows="1" style="resize: true;" @keydown=${this.handleKeyDown}></textarea>
+                <button class="send" @click="${this.sendMessage}" title="Enviar mensaje" ?hidden=${this.status === "LOADING"}><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+            <multiple-file-input></multiple-file-input>
+        </div>
+        `;
     }
 
     protected createRenderRoot() {
