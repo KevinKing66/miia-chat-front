@@ -22,8 +22,8 @@ export class ChatComponent extends LitElement {
     const { data } = resp;
     SessionStatus.getInstance().setCredentials(data);
     let msg: Message = { text: `Hola ${data.userinfo.nickname}, ¿Cómo puedo ayudarte hoy?`, type: 'BOT' };
-    let msg2: Message = { text: "Texto con **negrita**, *cursiva* y `código a copiar`.", type: 'BOT' };
-    this.messages = [msg, msg2];
+    // let msg2: Message = { text: "Texto con **negrita**, *cursiva* y `código a copiar`.", type: 'BOT' };
+    this.messages = [msg,];
   }
 
   onError(error: Error) {
