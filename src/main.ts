@@ -10,3 +10,4 @@ import "./components/messages/message-loading";
 
 import "./components/others/hello-world";
 import "./components/others/input-file-multiple";
+import "./components/others/modal-error";

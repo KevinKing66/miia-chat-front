@@ -715,10 +715,16 @@ thead button:hover {
 	color: var(--background-color);
 }
 
+.modal.fade {
+	background: #00000069;
+  	backdrop-filter: blur(5px);
+}
 
 .modal-body {
 	font-size: 1rem;
 	padding: 1rem 1.5rem;
+	color: #000000 !important;
+	font-weight: 600;
 }
 
 .form-label {

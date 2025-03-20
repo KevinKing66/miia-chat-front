@@ -1,9 +1,9 @@
 import { html, LitElement, PropertyValues } from "lit";
 import { property, state, customElement, query } from 'lit/decorators.js';
-import { AuthResponse, Message, MessageDto, ReplyDTO } from "../../dto/chat";
+import { AuthResponse, Message, MessageDto, ReplyDTO, CustomError } from "../../dto/chat";
 import { SessionStatus } from '../../session/session-status';
-// import { AxiosResponse } from "axios";
 import { ChatService } from "../../service/chat-service";
+import { AxiosError } from "axios";
 // import GlobalConfig from '../global/global-config';
 
 @customElement("input-message-component")
@@ -16,6 +16,9 @@ export class InputMessageComponent extends LitElement {
 
     @property()
     status: "LOADING" | "FREE" = "FREE";
+    
+    @state()
+    error: AxiosError | null = null;
 
     service: ChatService = ChatService.getInstance();
 
@@ -60,12 +63,16 @@ export class InputMessageComponent extends LitElement {
         this.updateMessage({ text: reply.answer, type: 'BOT' });
     }
 
-    onError(error: Error) {
-
+    onError(error: AxiosError) {
+        this.error = error;
     }
 
     onFinally() {
         this.updateStatus("FREE");
+    }
+
+    updateError(event: CustomEvent) {
+        this.error = event.detail;
     }
 
     clearTextArea(){
@@ -83,6 +90,7 @@ export class InputMessageComponent extends LitElement {
 
 
     render() {
+        console.log("error: ", this.error);
         return html`
         <div class="inputs-container">
             <div class="input-wrap-container">
@@ -90,6 +98,7 @@ export class InputMessageComponent extends LitElement {
                 <button class="send" @click="${this.sendMessage}" title="Enviar mensaje" ?hidden=${this.status === "LOADING"}><i class="fa-solid fa-paper-plane"></i></button>
             </div>
             <multiple-file-input></multiple-file-input>
+            <modal-error .error="${this.error}" @update-error="${this.updateError}"</modal-error>
         </div>
         `;
     }
