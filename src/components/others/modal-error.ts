@@ -2,7 +2,6 @@
 import { css, LitElement } from 'lit';
 import { html } from 'lit-html';
 import { customElement, property, state } from 'lit/decorators.js';
-import { CustomError } from '../../dto/chat';
 import { AxiosError } from 'axios';
 
 @customElement('modal-error')

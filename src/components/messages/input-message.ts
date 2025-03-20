@@ -1,6 +1,6 @@
 import { html, LitElement, PropertyValues } from "lit";
 import { property, state, customElement, query } from 'lit/decorators.js';
-import { AuthResponse, Message, MessageDto, ReplyDTO, CustomError } from "../../dto/chat";
+import { AuthResponse, Message, MessageDto, ReplyDTO } from "../../dto/chat";
 import { SessionStatus } from '../../session/session-status';
 import { ChatService } from "../../service/chat-service";
 import { AxiosError } from "axios";
