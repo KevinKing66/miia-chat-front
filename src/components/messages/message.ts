@@ -43,7 +43,7 @@ export class MessageComponent extends LitElement {
             } else {
                 clearInterval(interval); // Detiene la animación cuando el texto está completo
             }
-        }, 50);
+        }, 8);
     }
 
     render() {
