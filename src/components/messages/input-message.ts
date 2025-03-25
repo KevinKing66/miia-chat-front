@@ -90,7 +90,6 @@ export class InputMessageComponent extends LitElement {
 
 
     render() {
-        console.log("error: ", this.error);
         return html`
         <div class="inputs-container">
             <div class="input-wrap-container">
