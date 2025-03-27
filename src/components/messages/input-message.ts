@@ -51,7 +51,7 @@ export class InputMessageComponent extends LitElement {
             let credential = SessionStatus.getInstance().getCredentials();
             this.updateMessage({ text: this.textarea.value.trim(), type: 'USER' });
             let now = Math.floor(Date.now() / 1000)
-            const body: MessageDto = { to_user_code: credential.userinfo.email, to_user_name: credential.userinfo.nickname, message: this.textarea.value, chatbot_code: "COMTOR", sent_timestamp: now.toString() };
+            const body: MessageDto = { to_user_code: credential.userinfo.email, to_user_name: credential.userinfo.nickname, from_user_code: credential.userinfo.email, from_user_name: credential.userinfo.nickname, message: this.textarea.value, chatbot_code: "COMTOR", sent_timestamp: now.toString() };
             this.clearTextArea();
             this.service.sendMessages(body, this.callback.bind(this), this.onError.bind(this), this.onFinally.bind(this));
         }

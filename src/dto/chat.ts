@@ -1,6 +1,8 @@
-export interface MessageDto{
+export interface MessageDto {
     to_user_code: string;
     to_user_name?: string;
+    from_user_code: string;
+    from_user_name?: string;
     chatbot_code: 'SOFI' | 'COMTOR';
     message: string; 
     sent_timestamp: string;
