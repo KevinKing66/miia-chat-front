@@ -24,13 +24,12 @@ async def show_qr(resp: Response):
         qr = response.json().get("qr")
         msg = response.json().get("message")
     
-    if status == "NON-EXISTENT_QR" or status == None:
-        resp.status_code = 404
+    if status == "BOT_CONNECTED" or status == "NON-EXISTENT_QR":
         return {"message": msg}
     
-    if status == "BOT_CONNECTED" or qr == None:
-        return {"message": msg}
-    
+    if  qr == None:
+        return {"message": "No se ha podido generar el QR"}
+
     # Generar el QR con el texto "hola"
     img = qrcode.make(qr)
 
