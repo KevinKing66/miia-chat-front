@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.responses import StreamingResponse
 import httpx
 import qrcode
@@ -13,15 +13,23 @@ async def call_qr():
         return response.json()
 
 @app.get("/qr/generate/image")
-async def show_qr():
+async def show_qr(resp: Response):
     qr = None
+    status = None
+    msg = None
     async with httpx.AsyncClient() as client:
         response = await client.get("http://localhost:8080/qr")
         print(response.json())
+        resp.status_code = response.status_code
         qr = response.json().get("qr")
+        msg = response.json().get("message")
     
-    if qr == None:
-        return {"error": "No se pudo obtener el QR"}
+    if status == "NON-EXISTENT_QR" or status == None:
+        resp.status_code = 404
+        return {"message": msg}
+    
+    if status == "BOT_CONNECTED" or qr == None:
+        return {"message": msg}
     
     # Generar el QR con el texto "hola"
     img = qrcode.make(qr)
