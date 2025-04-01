@@ -19,18 +19,24 @@ async def show_qr(resp: Response):
     msg = None
     async with httpx.AsyncClient() as client:
         response = await client.get("http://localhost:8080/qr")
-        print(response.json())
+        data = response.json()
+        qr = data.get("qr")
+        status = data.get("status")
+        status = data.get("status")
         resp.status_code = response.status_code
-        qr = response.json().get("qr")
-        msg = response.json().get("message")
+        if(response.status_code != 200):
+            msg = data.get("message")
     
     if status == "BOT_CONNECTED" or status == "NON-EXISTENT_QR":
-        return {"message": msg}
+        return {"message": status}
     
     if  qr == None:
         return {"message": "No se ha podido generar el QR"}
+    
+    if  status == None:
+        # resp.status_code = 500
+        return {"message": "Error con el servidor"}
 
-    # Generar el QR con el texto "hola"
     img = qrcode.make(qr)
 
     # Guardar la imagen en un buffer en memoria
