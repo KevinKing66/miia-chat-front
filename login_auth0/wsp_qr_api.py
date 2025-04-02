@@ -43,6 +43,13 @@ async def call_qr(uuid: str):
     async with httpx.AsyncClient() as client:
         response = await client.get(f"http://localhost:8080/whatsapp_session/{uuid}")
         return response.json()
+    
+
+@app.get("/bot")
+async def findAllBots():
+    async with httpx.AsyncClient() as client:
+        response = await client.get(f"http://localhost:8080/whatsapp_session")
+        return response.json()
 
 
 @app.get("/hello")
