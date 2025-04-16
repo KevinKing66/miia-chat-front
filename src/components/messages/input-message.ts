@@ -60,7 +60,18 @@ export class InputMessageComponent extends LitElement {
     callback(response) {
         const data = response.data;
         const reply: ReplyDTO = JSON.parse(data)[0] as ReplyDTO;
+        
         this.updateMessage({ text: reply.answer, type: 'BOT' });
+    
+    // // MANERA DE CARGAR TODAS LAS RESPUESTAS
+    //     const replyies: ReplyDTO = JSON.parse(data)[0] as ReplyDTO;
+
+    //   let mesaggesList: Message[] = [];
+    //   for(let r of replyies){
+    //     const msg = new Message(r.answer, "USER");
+    //     mesaggesList.push(msg);
+    //   }
+    //   this.updateMessage(mesaggesList);
     }
 
     onError(error: AxiosError) {
