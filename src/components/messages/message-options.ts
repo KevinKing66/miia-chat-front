@@ -47,7 +47,7 @@ export class MessageComponent extends LitElement {
                 </button>
 
                 <button class="option-btn" @click=${() => this.generateNewResponse()} title="Nueva respuesta"><i class="fa-solid fa-rotate-right"></i></button>
-                ---!>
+                !-->
             </div>
             ` 
             : html``}`;

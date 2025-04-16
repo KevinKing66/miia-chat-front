@@ -97,7 +97,7 @@ export class InputMessageComponent extends LitElement {
                 <button class="send" @click="${this.sendMessage}" title="Enviar mensaje" ?hidden=${this.status === "LOADING"}><i class="fa-solid fa-paper-plane"></i></button>
             </div>
             <multiple-file-input></multiple-file-input>
-            <modal-error .error="${this.error}" @update-error="${this.updateError}"</modal-error>
+            <modal-error .error="${this.error}" @update-error="${this.updateError}"></modal-error>
         </div>
         `;
     }
