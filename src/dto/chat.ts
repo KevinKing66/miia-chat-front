@@ -41,6 +41,7 @@ export interface AuthResponse {
     expires_at?: number;
     expires_in?: number;
     id_token?: string;
+    AixabotCustomer?: string;
     scope?: string;
     token_type?: string;
     userinfo: UserInfo;

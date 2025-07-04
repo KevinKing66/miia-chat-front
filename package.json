@@ -15,7 +15,8 @@
   "scripts": {
     "start": "vite",
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "build:dev": "npx webpack --config webpack.config.js --watch"
   },
   "keywords": [
     "bot",

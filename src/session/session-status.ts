@@ -2,6 +2,7 @@ import { AuthResponse, Message } from '../dto/chat';
 
 export class SessionStatus{
   private static instance: SessionStatus;
+  private static CUSTOMER: string = "customer";
   private constructor(){
 
   }
@@ -14,8 +15,12 @@ export class SessionStatus{
   }
 
   getCredentials(): AuthResponse{
-    let credentials: AuthResponse = JSON.parse(sessionStorage.credentials);
+    let credentials: AuthResponse = sessionStorage.credentials ? JSON.parse(sessionStorage.credentials) : undefined;
     return credentials;
+  }
+
+  getAixabotCustomer(): string {
+    return this.getCredentials()?.AixabotCustomer;
   }
 
   setCredentials(credentials: AuthResponse): void{
