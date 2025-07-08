@@ -20,7 +20,11 @@ export class SessionStatus{
   }
 
   getAixabotCustomer(): string {
-    return this.getCredentials()?.AixabotCustomer;
+    return SessionStatus.CUSTOMER ? JSON.parse(SessionStatus.CUSTOMER) : undefined;
+  }
+
+  setAixabotCustomer(value: string){
+    sessionStorage.setItem(SessionStatus.CUSTOMER, value);
   }
 
   setCredentials(credentials: AuthResponse): void{
